@@ -17,54 +17,108 @@
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-offset-4 is-4">
-                    <form method="POST">
-                        <div class="field has-addons">
-                            <div class="control is-expanded">
-                                <input class="input" type="text" placeholder="City Name">
-                            </div>
-                            <div class="control">
-                                <button class="button is-info">
-                                    Add City
-                                </button>
-                            </div>
+    <div class="columns">
+        <div class="column is-offset-4 is-4">
+            <div class="box">
+                <h2>List of 10 coolest districts over the next 7 days - </h2>
+                <section class="section">
+                    <div class="container">
+                        <div class="columns">
+                            <article class="media"> 
+                                <div class="media-content">
+                                    <ol type="i">
+                                        {% for district_name, district_temp in top_10_coolest_districts %}
+                                        
+                                            <li> {{district_name}}: {{district_temp}}°C </li>
+                                        
+                                        {% endfor %}
+                                    </ol>
+                                </div>
+                            </article>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </section>
+                <h2>Travel to {{coolest_district}} to enjoy the cool weather</h2>
             </div>
         </div>
-    </section>
+    </div>
+
     <section class="section">
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
                     <div class="box">
                         <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-50x50">
-                                    <img src="http://openweathermap.org/img/w/10d.png" alt="Image">
-                                </figure>
-                            </div>
                             <div class="media-content">
+
+                                <form action="{% url 'forecast'%}" method="post">
+                                    {% csrf_token %}
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <input class="input" type="text" placeholder="Currentlocation" name="location">
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <input class="input" type="text" placeholder="Destination" name="destination">
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <input class="input" type="text" placeholder="Date of travel" name="date_of_travel">
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <button class="button is-info" type="submit">
+                                                Enter
+                                            </button>
+                                        </div>
+                                    </div>  
+                                </form>
+
+                                <p>{{location_temperature_at_2PM}}</p>
+
+                                {% if location_temperature_at_2PM %}
                                 <div class="content">
                                     <p>
-                                        <span class="title">Las Vegas</span>
+                                        <p>Location temp at 2PM: {{location_temperature_at_2PM}}</p>
+                                        <span class="title">Dhaka</span>
                                         <br>
-                                        <span class="subtitle">29° F</span>
-                                        <br> thunderstorm with heavy rain
+<!-- 
+                                    
+                                        <span class="subtitle">29° F</span> 
+                                        <p>{{ data.timezone }}</p> 
+                                        <p>{{length}}</p>
+                                        <p>{{temperature_for_7_days}}</p>
+                                        <p>{{data.hourly_temp}}</p>
+                                        <span class="subtitle">29° F</span> -->
+
                                     </p>
-                                </div>
+                                </div> 
+                                {% endif %} 
                             </div>
                         </article>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
+
+
     <footer class="footer">
     </footer>
 </body>
 </html>
+
+
+
+                <!-- <div class="column is-offset-4 is-4"> -->
+                    <!-- <p>Top 10 coolest districts rn: {{top_10_coolest_districts}}</p>
+                    <br><br>
+                    <p>Name of the coolest_districts: {{name_of_coolest_districts}}</p> -->
+<!--        
+                    
