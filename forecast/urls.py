@@ -3,7 +3,7 @@ from . import views
 
 # app_name = 'forecast'
 urlpatterns = [
-    path('', views.index, name= 'index'),
+    path('', views.index, name = 'index'),
     path('forecast/', views.forecast, name = 'forecast'),
 
 ]
