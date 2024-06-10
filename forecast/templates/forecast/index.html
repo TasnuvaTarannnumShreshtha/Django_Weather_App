@@ -43,6 +43,7 @@
         </div>
     </div>
 
+
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -50,57 +51,11 @@
                     <div class="box">
                         <article class="media">
                             <div class="media-content">
-
-                                <form action="{% url 'forecast'%}" method="post">
-                                    {% csrf_token %}
-                                    <div class="field has-addons">
-                                        <div class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Currentlocation" name="location">
-                                        </div>
-                                        <br>
-                                    </div>
-                                    <div class="field has-addons">
-                                        <div class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Destination" name="destination">
-                                        </div>
-                                        <br>
-                                    </div>
-                                    <div class="field has-addons">
-                                        <div class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Date of travel" name="date_of_travel">
-                                        </div>
-                                        <br>
-                                    </div>
-                                    <div class="field has-addons">
-                                        <div class="control">
-                                            <button class="button is-info" type="submit">
-                                                Enter
-                                            </button>
-                                        </div>
-                                    </div>  
+                                <form action="{% url 'forecast' %}" method="get">
+                                    <button type="submit">Go to Forecast</button>
                                 </form>
 
-                                <p>{{location_temperature_at_2PM}}</p>
-
-                                {% if location_temperature_at_2PM %}
-                                <div class="content">
-                                    <p>
-                                        <p>Location temp at 2PM: {{location_temperature_at_2PM}}</p>
-                                        <span class="title">Dhaka</span>
-                                        <br>
-<!-- 
-                                    
-                                        <span class="subtitle">29° F</span> 
-                                        <p>{{ data.timezone }}</p> 
-                                        <p>{{length}}</p>
-                                        <p>{{temperature_for_7_days}}</p>
-                                        <p>{{data.hourly_temp}}</p>
-                                        <span class="subtitle">29° F</span> -->
-
-                                    </p>
-                                </div> 
-                                {% endif %} 
-                            </div>
+                            </div> 
                         </article>
                     </div>
                 </div>
@@ -121,4 +76,23 @@
                     <br><br>
                     <p>Name of the coolest_districts: {{name_of_coolest_districts}}</p> -->
 <!--        
-                    
+                    <p>{{location_temperature_at_2PM}}</p> -->
+
+                                <!-- {% if location_temperature_at_2PM %}
+                                <div class="content">
+                                    <p>
+                                        <p>Location temp at 2PM: {{location_temperature_at_2PM}}</p>
+                                        <span class="title">Dhaka</span>
+                                        <br>
+
+                                    
+                                        <span class="subtitle">29° F</span> 
+                                        <p>{{ data.timezone }}</p> 
+                                        <p>{{length}}</p>
+                                        <p>{{temperature_for_7_days}}</p>
+                                        <p>{{data.hourly_temp}}</p>
+                                        <span class="subtitle">29° F</span> -->
+
+                                    <!-- </p>
+                                </div>  -->
+                                <!-- {% endif %}  -->

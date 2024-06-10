@@ -14,7 +14,8 @@ def index(request):
         lat = district['lat']
         long = district['long']
         district_name = district['name']
-        api_url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat +'&longitude='+ long +'&hourly=temperature_2m'
+        
+        api_url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat +'&longitude='+ long +'&hourly=temperature_2m&' ++
         reponse = requests.get(api_url)
         json_data = reponse.json()
         # hourly_temperature_data = str(json_data['hourly']['temperature_2m'])
@@ -23,22 +24,25 @@ def index(request):
 
         temperatures_at_2PM = []
 
-        for i in range(13, length_of_hourly_temperature_data, 24):
-            input_number = round(hourly_temperature_data[i], 2)
-            temperatures_at_2PM.append(input_number)
+        # for i in range(13, length_of_hourly_temperature_data, 24):
+        #     input_number = round(hourly_temperature_data[i], 2)
+        #     temperatures_at_2PM.append(input_number)
 
         sum_of_temperatures = sum(temperatures_at_2PM)
         average_temperature = sum_of_temperatures / 7
         temperature_of_all_districts[district_name] = round(average_temperature, 2)
-        sorted_temperature_of_all_districts = sorted(temperature_of_all_districts.items(), key = lambda x:x[1])
-        top_10_coolest_districts = sorted_temperature_of_all_districts[:10]
-        name_of_coolest_disticts = []
 
 
-        for district in top_10_coolest_districts:
-            name_of_coolest_disticts.append(district[0])
+    sorted_temperature_of_all_districts = sorted(temperature_of_all_districts.items(), key = lambda x:x[1])
+    top_10_coolest_districts = sorted_temperature_of_all_districts[:10]
+    name_of_coolest_disticts = []
+
+
+    for district in top_10_coolest_districts:
+        name_of_coolest_disticts.append(district[0])
         
-        coolest_district = name_of_coolest_disticts[0]
+    
+    coolest_district = name_of_coolest_disticts[0]
 
 
     return render(request, 'forecast/index.html', {'lat':lat, 'long':long,
@@ -54,10 +58,11 @@ def index(request):
 
 
 def forecast(request):
-    if request.method == "POST":
-        location = request.POST['location']
-        destination = request.POST['destination']
-        date_of_travel = request.POST['date_of_travel']
+
+    if request.method == "GET":
+        location = request.GET.get('location')
+        destination = request.GET.get('destination')
+        date_of_travel = request.GET.get('date_of_travel')
         long_of_location = 0
         lat_of_location = 0
         long_of_dest = 0
@@ -70,33 +75,20 @@ def forecast(request):
                 long_of_dest = district['long']
                 lat_of_dest = district['lat']
 
-        api_url = "https://api.open-meteo.com/v1/forecast?latitude="+ lat_of_location + "&longitude="+ long_of_location+"&hourly=temperature_2m"
+        # print(lat_of_location, " ", long_of_location, " ", lat_of_dest, " "+ long_of_dest)
+        print(location + " " + destination + " " + date_of_travel)
+        api_url = "https://api.open-meteo.com/v1/forecast?latitude="+ str(lat_of_location) + "&longitude="+ str(long_of_location) +"&hourly=temperature_2m&start_hour=" +str(date_of_travel) + "T14:00" +"&end_hour=" +str(date_of_travel)+ "T14:00"
         reponse = requests.get(api_url)
         json_data = reponse.json()
-        # hourly_temperature_data = str(json_data['hourly']['temperature_2m'])
         location_temperature_at_2PM = json_data['hourly']['temperature_2m'][13]
 
-        api_url = "https://api.open-meteo.com/v1/forecast?latitude="+ lat_of_dest +"&longitude="+ long_of_dest +"&hourly=temperature_2m"
+        api_url = "https://api.open-meteo.com/v1/forecast?latitude="+ str(lat_of_dest) +"&longitude="+ str(long_of_dest) +"&hourly=temperature_2m&start_hour=" +str(date_of_travel) + "T14:00" +"&end_hour=" +str(date_of_travel)+ "T14:00"
         response = requests.get(api_url)
         json_data = response.json()
         destination_temperature_at_2PM = json_data['hourly']['temperature_2m'][13]
 
-    return render(request, 'forecast/index.html', {'location_temperature_at_2PM': location_temperature_at_2PM, 'destination_temperature_at_2PM': destination_temperature_at_2PM})
-
-
-        # data = str(json_data['hourly']['temperature_2m'])
-       
-
-        # average_temperature = sum(temperatures_at_2PM) / 7
-        # temperature_of_all_districts.append(average_temperature)
-
-
-
-
-
-
-
-
+        return render(request, 'forecast/forecast.html', {'location_temperature_at_2PM': location_temperature_at_2PM, 'destination_temperature_at_2PM': destination_temperature_at_2PM})
+    return render(request, 'forecast/forecast.html')
     # if request.method == 'POST':
     #     latitude = request.POST['latitude']
     #     longitude = request.POST['longitude']
@@ -116,11 +108,7 @@ def forecast(request):
     # else:
     #     data = {}
           
-    # return render(request, 'forecast/index.html', {'data': data, 'length':length, 'temperature_for_7_days': temperature_for_upcoming_7_days})
-
-
-
-
+    # return render(request, 'forecast/index.html', {'data': data, 'length':length, 'temperature_for_7_days': temperature_for_upcoming_7_day
 
 
 
