@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
+from forecast import views
 
-# app_name = 'forecast'
 urlpatterns = [
-    path('', views.index, name = 'index'),
-    path('forecast/', views.forecast, name = 'forecast'),
+    path('', views.ForecastView.as_view(), name= 'index'),
+    path('forecast/', views.ForecastComparisionView.as_view(), name = 'forecast')
 
 ]

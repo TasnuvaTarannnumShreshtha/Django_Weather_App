@@ -60,11 +60,22 @@
                         <div class="box">
                             <article class="media">
                                 <div class="media-content">
+                                    
                                     {% if  location_temperature_at_2PM %}
-                                    <p>Location temperature is: {{location_temperature_at_2PM}}</p>
+                                        <p>Temperature in {{location_name}} on {{date_of_travel}} at 2 PM is: {{location_temperature_at_2PM}}°C</p>
+                                    
+                                        <p>Temperature in {{destination_name}} on {{date_of_travel}} at 2 PM is: {{destination_temperature_at_2PM}}°C</p>
+                                        <br>
+                                        {% if destination_temperature_at_2PM > location_temperature_at_2PM %}
+                                            <p>It's better to travel somewhere else to cool off</p>
+                                        {% else %}
+                                            <p>The weather is much cooler in {{destination_name}} right now 😃</p>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <p>{{error_message}}</p>
+                                        
                                     {% endif %}
-                                    <p>Destination temperature is: {{destination_temperature_at_2PM}}</p>
-                                    <p></p>
                                 </div> 
                     </div>
                 </div>

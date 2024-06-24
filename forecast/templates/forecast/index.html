@@ -27,10 +27,9 @@
                             <article class="media"> 
                                 <div class="media-content">
                                     <ol type="i">
-                                        {% for district_name, district_temp in top_10_coolest_districts %}
+                                        {% for district_name, district_temp in top_10_coolest_districts.items %}
                                         
                                             <li> {{district_name}}: {{district_temp}}°C </li>
-                                        
                                         {% endfor %}
                                     </ol>
                                 </div>
@@ -38,7 +37,7 @@
                         </div>
                     </div>
                 </section>
-                <h2>Travel to {{coolest_district}} to enjoy the cool weather</h2>
+                <h2>Travel to {{coolest_district}}°C to enjoy the cool weather</h2>
             </div>
         </div>
     </div>
@@ -51,6 +50,7 @@
                     <div class="box">
                         <article class="media">
                             <div class="media-content">
+                                
                                 <form action="{% url 'forecast' %}" method="get">
                                     <button type="submit">Go to Forecast</button>
                                 </form>
@@ -69,30 +69,3 @@
 </body>
 </html>
 
-
-
-                <!-- <div class="column is-offset-4 is-4"> -->
-                    <!-- <p>Top 10 coolest districts rn: {{top_10_coolest_districts}}</p>
-                    <br><br>
-                    <p>Name of the coolest_districts: {{name_of_coolest_districts}}</p> -->
-<!--        
-                    <p>{{location_temperature_at_2PM}}</p> -->
-
-                                <!-- {% if location_temperature_at_2PM %}
-                                <div class="content">
-                                    <p>
-                                        <p>Location temp at 2PM: {{location_temperature_at_2PM}}</p>
-                                        <span class="title">Dhaka</span>
-                                        <br>
-
-                                    
-                                        <span class="subtitle">29° F</span> 
-                                        <p>{{ data.timezone }}</p> 
-                                        <p>{{length}}</p>
-                                        <p>{{temperature_for_7_days}}</p>
-                                        <p>{{data.hourly_temp}}</p>
-                                        <span class="subtitle">29° F</span> -->
-
-                                    <!-- </p>
-                                </div>  -->
-                                <!-- {% endif %}  -->
