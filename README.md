@@ -47,4 +47,7 @@ Finally, start your Django development server in another terminal session
 python3 manage.py runserver
 ```
 
+### Accessing the Application
+After running the django server you can visit [http://localhost:8000](http://localhost:8000) to access it through a web browser
+
 
