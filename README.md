@@ -4,10 +4,10 @@ This Django-based weather application provides temperature forecasts for the coo
 ## Getting Started
 ### Requirements
 
-- **Python Version**: Python 3.12.3 
-- **Django Version**: Django 5.0.6 
-- **Celery**: Celery 5.4.0
-- **Redis**: Redis 7.2.5
+- **Python Version**: Python 3.12.3 ![Python](https://img.shields.io/badge/Python-3.12.3-blue)
+- **Django Version**: Django 5.0.6 ![Django](https://img.shields.io/badge/Django-5.0.6-green)
+- **Celery**: Celery 5.4.0 ![Celery](https://img.shields.io/badge/Celery-5.4.0-yellow)
+- **Redis**: Redis 7.2.5  ![Celery Beat](https://img.shields.io/badge/Celery_Beat-5.4.0-lightgrey)
 
 ### Setting Up the Project
 #### 1. Clone the Repository
