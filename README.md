@@ -8,3 +8,21 @@ This Django-based weather application provides temperature forecasts for the coo
 - **Django Version**: Django 5.0.6 
 - **Celery**: Celery 5.4.0
 - **Redis**: Redis 7.2.5
+
+### Setting Up the Project
+#### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
+
+#### 2. Install the Dependencies mentioned in Requirements Section
+```bash
+pip install -r package_name
+```
+
+#### 3. Set up the Database (SQLite)
+```bash
+python3 manage.py migrate
+```
