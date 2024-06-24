@@ -26,3 +26,25 @@ pip install -r package_name
 ```bash
 python3 manage.py migrate
 ```
+
+#### 4. Starting Services
+Since the project uses Celery with Redis and Celery Beat, these services need to be started separately in seperate terminals
+##### 1. Start Redis Server
+```bash
+redis-server
+```
+##### 2. Start Celery Worker
+```bash
+celery -A weather_app worker --loglevel=info
+```
+##### 3. Start Celery Beat
+```bash
+celery -A weather_app beat --loglevel=info
+```
+#### 5. Running the Django Server
+Finally, start your Django development server in another terminal session
+```bash
+python3 manage.py runserver
+```
+
+
