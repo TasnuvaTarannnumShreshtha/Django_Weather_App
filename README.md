@@ -13,8 +13,8 @@ This Django-based weather application provides temperature forecasts for the coo
 #### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/shreshtha-strativ/Weather-App.git
+cd weather_app
 ```
 
 #### 2. Install the Dependencies mentioned in Requirements Section
